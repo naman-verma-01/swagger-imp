@@ -1,0 +1,87 @@
+openapi: 3.0.0
+info:
+  title: Swagger Implementation
+  description: This is a swagger documentations of a basic sign-up and login express api.
+  version: 0.2
+servers:
+  - url: http://localhost:8000  
+    description: Main (production) server
+  
+
+tags:
+  -name: signup
+   description: Used for signing up
+  -name: login
+   description: Used for logging in
+paths:
+  /signup:
+    post:
+      tags:
+      - "signup"
+      summary: Sign up of new user.
+      description: Lets a new user sign up and make a new account.
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+        - in: body
+          name: user
+          description: The user to create.
+          schema:
+            type: object
+            required:
+              - userName
+            properties:
+              user:
+                type: string
+              password:
+                type: string
+              email-id:
+                type: string
+      responses:
+        '200':    # status code
+          description: Success operation
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+  /login:
+    get:
+      tags:
+      - "login"
+      summary: Login of existing user.
+      description: Lets a user login and use account.
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+        - in: body
+          name: user
+          description: The user to create.
+          schema:
+            type: object
+            required:
+              - userName
+            properties:
+              user:
+                type: string
+              password:
+                type: string
+      responses:
+        '200':    # status code
+          description: Authentication Success
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
+                       
